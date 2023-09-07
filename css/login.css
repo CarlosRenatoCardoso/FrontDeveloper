@@ -5,12 +5,6 @@ Id (#btn-entrar)
 Seletor (Tudo junto e misturado)
 */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .grupo {
     margin-top: 10px;
 }
@@ -18,7 +12,7 @@ Seletor (Tudo junto e misturado)
 .caixa-login {
     width: 250px;
     height: auto;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     margin: auto;
     margin-top: 70px;
     padding: 20px;
@@ -27,21 +21,27 @@ Seletor (Tudo junto e misturado)
 
 .titulo-login {
     text-align: center;
-    color: #03A9F4;
+    color: var(--cor-primaria);
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 10px;
 }
 
+label {
+    font-size: 12px;
+}
+
 input, #btn-entrar {
     padding: 8px;
     width: 100%;
-    border-radius: 3px;
+    border-radius: 2px;
+    border: 2px solid #ddd;
+    outline: none;
 }
 
 #btn-entrar {
     margin-top: 10px;
-    background-color: #03A9F4;
+    background-color: var(--cor-primaria);
     border: none;
     color: #fff;
     font-weight: 600;
@@ -49,5 +49,17 @@ input, #btn-entrar {
 
 #btn-entrar:hover {
     cursor: pointer;
-    background-color: #0288D1;
+    background-color: var(--cor-secundaria);
+}
+
+.esqueci-minha-senha {
+    text-align: right;
+    font-style: italic;
+    margin-top: 3px;
+}
+
+.esqueci-minha-senha a {
+    color: var(--cor-primaria);
+    text-decoration: none;
+    font-size: 12px;
 }
