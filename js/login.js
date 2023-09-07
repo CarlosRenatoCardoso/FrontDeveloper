@@ -6,5 +6,5 @@ const emailBanco = "admin@admin";
 const senhaBanco = "123";
 
 btnEntrar.addEventListener('click',()=>{
-    
+    window.open('cadastro-usuario.html','_self')
 });
