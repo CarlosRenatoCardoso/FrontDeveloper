@@ -38,7 +38,7 @@ function autenticar(email, senha){
             salvarToken(response.token);
             salvarUsuario(response.usuario);
 
-            window.open('cadastro-usuario.html','_self')
+            window.open('cliente.html','_self')
         }
     });
 }
