@@ -23,3 +23,7 @@ table.table>thead>tr th {
 button.btn {
     min-width: 80px;
 }
+
+div.modal-dialog{
+    max-width: 700px;
+}
