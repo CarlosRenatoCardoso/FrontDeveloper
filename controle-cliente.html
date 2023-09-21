@@ -32,7 +32,7 @@
         </li>
       </ul>
       <ul class="navbar-nav">
-        <li onclick="sair()" class="nav-item">
+        <li onClick="sairSistema()" class="nav-item">
           <a class="nav-link" href="">Sair</a>
         </li>
       </ul>
@@ -50,10 +50,7 @@
 
     <div class="row">
       <div class="col-sm-3">
-        <button 
-        id="btn-adicionar" 
-        class="btn btn-primary btn-sm"
-        >
+        <button id="btn-adicionar" class="btn btn-primary btn-sm">
           Adicionar
         </button>
       </div>
@@ -119,8 +116,8 @@
                 </div>
 
                 <div class="col-sm-3">
-                  <label for="dataCadastro" class="form-label">Cadastro</label>
-                  <input type="date" class="form-control" id="dataCadastro">
+                  <label for="dataCadastro" class="form-label">Data de Cadastro</label>
+                  <input disabled type="date" class="form-control" id="dataCadastro">
                 </div>
               </div>
             </div>
@@ -137,6 +134,7 @@
 
   </div>
 
+  <script src="./js/base.js"></script>
   <Script src="./js/model/Clientes.js"></Script>
   <Script src="./js/controle-clientes.js"></Script>
 

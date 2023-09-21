@@ -35,7 +35,7 @@ btnSalvar.addEventListener('click', () => {
         return;
     }
 
-    adicionarClienteBackEnd(cliente)
+    (modoEdicao) ? atualizarClienteBackEnd(cliente) : adicionarClienteBackEnd(cliente);
 })
 
 function obterClienteDoModal() {
@@ -45,7 +45,7 @@ function obterClienteDoModal() {
         email: formModal.email.value,
         cpfOuCnpj: formModal.cpf.value,
         telefone: formModal.telefone.value,
-        // dataCadastro: formModal.dataCadastro.value,
+        dataCadastro: (formModal.dataCadastro.value) ? new Date(formModal.dataCadastro.value).toISOString() : new Date().toISOString()
     })
 }
 
@@ -56,7 +56,11 @@ btnCancelar.addEventListener('click', () => {
 function obterClientes() {
 
     fetch(URL, {
-        method: 'GET'
+        method: 'GET',
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': obterToken()
+        }
     })
         .then(response => response.json())
         .then(response => {
@@ -93,7 +97,10 @@ function limparModalCliente() {
 }
 
 function excluirCliente(id) {
-    alert(id);
+    let cliente = listaClientes.find(c => c.id == id);
+    if(confirm("Deseja realmente excluir o clinte " + cliente.nome)) {
+        excluirClienteBackEnd(cliente);
+    }
 }
 
 function criarLinhaNaTabela(cliente) {
@@ -112,7 +119,7 @@ function criarLinhaNaTabela(cliente) {
     tdCPF.textContent = cliente.cpfOuCnpj;
     tdEmail.textContent = cliente.email;
     tdTelefone.textContent = cliente.telefone;
-    tdDataCadastro.textContent = cliente.dataCadastro;
+    tdDataCadastro.textContent = new Date(cliente.dataCadastro).toLocaleDateString();
 
     tdAcoes.innerHTML = `<button onclick="editarCliente(${cliente.id})" class="btn btn-outline-primary btn-sm mr-2">Editar</button>
                          <button onclick="excluirCliente(${cliente.id})" class="btn btn-outline-primary btn-sm mr-2">Excluir</button>`
@@ -142,20 +149,65 @@ function adicionarClienteBackEnd(cliente) {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': "token"
+            'Authorization': obterToken()
         },
         body: JSON.stringify(cliente)
     })
-    .then(response => response.json())
-    .then(response => {
-        let novoCliente = new Cliente(response);
-        listaClientes.push(novoCliente);
-        popularTabela(listaClientes);
-        modalCliente.hide();
+        .then(response => response.json())
+        .then(response => {
+            let novoCliente = new Cliente(response);
+            listaClientes.push(novoCliente);
+            popularTabela(listaClientes);
+            modalCliente.hide();
+        })
+        .catch(error => {
+            console.log(error)
+        })
+}
+
+function atualizarClienteBackEnd(cliente) {
+    fetch(`${URL}/${cliente.id}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': obterToken()
+        },
+        body: JSON.stringify(cliente)
     })
-    .catch(error => {
-        console.log(error)
+        .then(response => response.json())
+        .then(() => {
+            atualizarClienteNaLista(cliente, false);
+            modalCliente.hide();
+        })
+        .catch(error => {
+            console.log(error)
+        })
+}
+
+function atualizarClienteNaLista(cliente, removerCliente) {
+    let indice = listaClientes.findIndex((c) => c.id == cliente.id);
+
+    (removerCliente) ? listaClientes.splice(indice, 1) : listaClientes.splice(indice, 1, cliente);
+
+    popularTabela(listaClientes);
+}
+
+function excluirClienteBackEnd(cliente) {
+    fetch(`${URL}/${cliente.id}`, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': obterToken()
+        }
     })
+        .then(response => response.json())
+        .then(() => {
+            atualizarClienteNaLista(cliente, true);
+            modalCliente.hide();
+        })
+        .catch(error => {
+            console.log(error)
+        })
 }
 
 obterClientes();

@@ -38,15 +38,18 @@ function autenticar(email, senha){
             salvarToken(response.token);
             salvarUsuario(response.usuario);
 
-            window.open('cliente.html','_self')
+            mostrarLoading();
+            setTimeout(() => {
+                window.open('controle-cliente.html','_self')
+            },5000)
         }
     });
 }
 
-function salvarToken(token){
-    localStorage.setItem('token', token)
-}
+function mostrarLoading() {
+    const divLoading = document.querySelector('#loading');
+    divLoading.style.display = 'block';
 
-function salvarUsuario(usuario){
-    localStorage.setItem('usuario', JSON.stringify(usuario))
+    const divCaixaLogin = document.querySelector('div.caixa-login');
+    divCaixaLogin.style.display = 'none';
 }
