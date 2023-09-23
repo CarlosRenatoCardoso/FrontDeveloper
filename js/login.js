@@ -2,54 +2,55 @@ let email = document.getElementById('email');
 let senha = document.getElementById('senha');
 let btnEntrar = document.getElementById('btn-entrar');
 
-btnEntrar.addEventListener('click',()=>{
+btnEntrar.addEventListener('click', () => {
     let userEmail = email.value;
     let userSenha = senha.value;
 
-    if (!userEmail || !userSenha){
-        alert ("O campo de e-mail e senha são obrigatórios");
-    return;
+    if (!userEmail || !userSenha) {
+        Swal.fire({
+            icon: 'error',
+            text: 'O campo de e-mail e senha são obrigatórios',
+        })
+        return;
     }
 
     autenticar(userEmail, userSenha);
 });
 
-function autenticar(email, senha){
+function autenticar(email, senha) {
     const urlBase = `http://localhost:3400`;
 
-    fetch (`${urlBase}/login`, {
+    fetch(`${urlBase}/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({email, senha})
+        body: JSON.stringify({ email, senha })
     })
-    .then(response => response = response.json())
-    .then(response => {
+        .then(response => response = response.json())
+        .then(response => {
 
-        if(!!response.mensagem){
-            alert(response.mensagem);
-            return;
+            if (!!response.mensagem) {
+                alert(response.mensagem);
+                return;
 
-        }else{
+            } else {
 
-            alert("Usuario autenticado com sucesso!");
+                salvarToken(response.token);
+                salvarUsuario(response.usuario);
 
-            salvarToken(response.token);
-            salvarUsuario(response.usuario);
+                // alert("Usuario autenticado com sucesso!");
 
-            mostrarLoading();
-            setTimeout(() => {
-                window.open('controle-cliente.html','_self')
-            },5000)
-        }
-    });
-}
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Usuario autenticado com sucesso!',
+                    showConfirmButton: false,
+                    timer: 2500
+                  })
+                  setTimeout(() => {
+                    window.open('controle-cliente.html', '_self')
+                  },2500)
 
-function mostrarLoading() {
-    const divLoading = document.querySelector('#loading');
-    divLoading.style.display = 'block';
-
-    const divCaixaLogin = document.querySelector('div.caixa-login');
-    divCaixaLogin.style.display = 'none';
+            }
+        });
 }

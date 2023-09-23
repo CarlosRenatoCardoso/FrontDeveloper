@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --cor-primaria: #03A9F4;
-    --cor-secundaria: #0288D1;
+    --cor-primaria: #43A047;
+    --cor-secundaria: #66BB6A;
 }
 
 * {
@@ -28,6 +28,28 @@ div.modal-dialog{
     max-width: 700px;
 }
 
-div.loading.conteiner {
-    
+.btn-outline-primary {
+    --bs-btn-color: var(--cor-primaria);
+    --bs-btn-border-color: var(--cor-primaria);
+    --bs-btn-hover-bg: var(--cor-primaria);
+    --bs-btn-hover-border-color: var(--cor-primaria);
+    --bs-btn-active-bg: var(--cor-primaria);
+    --bs-btn-active-border-color: var(--cor-primaria);
+    --bs-btn-disabled-color: var(--cor-primaria);
+    --bs-btn-disabled-border-color: var(--cor-primaria);
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--cor-primaria);
+    --bs-btn-border-color: var(--cor-primaria);
+    --bs-btn-hover-bg: var(--cor-secundaria);
+    --bs-btn-hover-border-color: var(--cor-secundaria);
+    --bs-btn-active-bg: var(--cor-secundaria);
+    --bs-btn-active-border-color: var(--cor-secundaria);
+    --bs-btn-disabled-bg: var(--cor-primaria);
+    --bs-btn-disabled-border-color: var(--cor-primaria);
+}
+
+.nav-link:hover{
+    color: #fff;
 }

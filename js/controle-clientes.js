@@ -31,7 +31,10 @@ btnSalvar.addEventListener('click', () => {
     let cliente = obterClienteDoModal();
 
     if (!cliente.nome || !cliente.email) {
-        alert("Nome e E-mail são obrigatórios")
+        Swal.fire({
+            icon: 'error',
+            text: 'Nome e E-mail são obrigatórios!',
+        })
         return;
     }
 
@@ -98,9 +101,19 @@ function limparModalCliente() {
 
 function excluirCliente(id) {
     let cliente = listaClientes.find(c => c.id == id);
-    if(confirm("Deseja realmente excluir o clinte " + cliente.nome)) {
-        excluirClienteBackEnd(cliente);
-    }
+    Swal.fire({
+        title: 'Deseja realmente excluir o clinte ' + cliente.nome,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#76FF03',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim',
+        cancelButtonText: 'Não',
+      }).then((result) => {
+        if (result.isConfirmed) {
+            excluirClienteBackEnd(cliente);
+        }
+      })
 }
 
 function criarLinhaNaTabela(cliente) {
@@ -159,6 +172,13 @@ function adicionarClienteBackEnd(cliente) {
             listaClientes.push(novoCliente);
             popularTabela(listaClientes);
             modalCliente.hide();
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Cliente adicionado com sucesso!',
+                showConfirmButton: false,
+                timer: 2000
+              })
         })
         .catch(error => {
             console.log(error)
@@ -178,6 +198,13 @@ function atualizarClienteBackEnd(cliente) {
         .then(() => {
             atualizarClienteNaLista(cliente, false);
             modalCliente.hide();
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Cliente editado com sucesso!',
+                showConfirmButton: false,
+                timer: 2000
+              })
         })
         .catch(error => {
             console.log(error)
@@ -204,6 +231,13 @@ function excluirClienteBackEnd(cliente) {
         .then(() => {
             atualizarClienteNaLista(cliente, true);
             modalCliente.hide();
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Cliente excluido com sucesso!',
+                showConfirmButton: false,
+                timer: 2000
+              })
         })
         .catch(error => {
             console.log(error)
