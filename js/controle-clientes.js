@@ -105,7 +105,7 @@ function excluirCliente(id) {
         title: 'Deseja realmente excluir o clinte ' + cliente.nome,
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#76FF03',
+        confirmButtonColor: '#43A047',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Sim',
         cancelButtonText: 'Não',

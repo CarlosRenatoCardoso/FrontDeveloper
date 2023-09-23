@@ -37,7 +37,7 @@ function validarUsuarioAutenticado() {
         if(logado){
             window.open("controle-cliente.html", '_self')
         }
-    }else if(!logado && window.location.pathname == "/controle-cliente.html") {
+    }else if((!logado && window.location.pathname == "/controle-cliente.html") || (!logado && window.location.pathname == "/controle-produtos.html")) {
         direcionarTelaDeLogin();
     }
 }
