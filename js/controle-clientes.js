@@ -60,7 +60,7 @@ function obterClientes() {
 
     fetch(URL, {
         method: 'GET',
-        headers:{
+        headers: {
             'Content-Type': 'application/json',
             'Authorization': obterToken()
         }
@@ -87,7 +87,7 @@ function atualizarModalCliente(cliente) {
     formModal.email.value = cliente.email;
     formModal.cpf.value = cliente.cpfOuCnpj;
     formModal.telefone.value = cliente.telefone;
-    formModal.dataCadastro.value = cliente.dataCadastro.substring(0,10);
+    formModal.dataCadastro.value = cliente.dataCadastro.substring(0, 10);
 }
 
 function limparModalCliente() {
@@ -109,11 +109,11 @@ function excluirCliente(id) {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Sim',
         cancelButtonText: 'Não',
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             excluirClienteBackEnd(cliente);
         }
-      })
+    })
 }
 
 function criarLinhaNaTabela(cliente) {
@@ -178,7 +178,7 @@ function adicionarClienteBackEnd(cliente) {
                 title: 'Cliente adicionado com sucesso!',
                 showConfirmButton: false,
                 timer: 2000
-              })
+            })
         })
         .catch(error => {
             console.log(error)
@@ -204,7 +204,7 @@ function atualizarClienteBackEnd(cliente) {
                 title: 'Cliente editado com sucesso!',
                 showConfirmButton: false,
                 timer: 2000
-              })
+            })
         })
         .catch(error => {
             console.log(error)
@@ -237,7 +237,7 @@ function excluirClienteBackEnd(cliente) {
                 title: 'Cliente excluido com sucesso!',
                 showConfirmButton: false,
                 timer: 2000
-              })
+            })
         })
         .catch(error => {
             console.log(error)

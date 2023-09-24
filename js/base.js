@@ -1,8 +1,8 @@
-function salvarToken(token){
+function salvarToken(token) {
     localStorage.setItem('token', token)
 }
 
-function salvarUsuario(usuario){
+function salvarUsuario(usuario) {
     localStorage.setItem('usuario', JSON.stringify(usuario))
 }
 
@@ -20,7 +20,7 @@ function sairSistema() {
     direcionarTelaDeLogin();
 }
 
-function direcionarTelaDeLogin(){
+function direcionarTelaDeLogin() {
     window.open('login.html', '_self');
 }
 
@@ -33,11 +33,11 @@ function usuarioEstaLogado() {
 function validarUsuarioAutenticado() {
     let logado = usuarioEstaLogado();
 
-    if(window.location.pathname == "/login.html"){
-        if(logado){
+    if (window.location.pathname == "/login.html") {
+        if (logado) {
             window.open("controle-cliente.html", '_self')
         }
-    }else if((!logado && window.location.pathname == "/controle-cliente.html") || (!logado && window.location.pathname == "/controle-produtos.html")) {
+    } else if ((!logado && window.location.pathname == "/controle-cliente.html") || (!logado && window.location.pathname == "/controle-produtos.html")) {
         direcionarTelaDeLogin();
     }
 }

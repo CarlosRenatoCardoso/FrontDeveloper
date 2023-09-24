@@ -46,10 +46,10 @@ function autenticar(email, senha) {
                     title: 'Usuario autenticado com sucesso!',
                     showConfirmButton: false,
                     timer: 2500
-                  })
-                  setTimeout(() => {
+                })
+                setTimeout(() => {
                     window.open('controle-cliente.html', '_self')
-                  },2500)
+                }, 2500)
 
             }
         });

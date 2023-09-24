@@ -46,14 +46,14 @@ function atualizarModalProduto(produto) {
     formModal.valor.value = produto.valor;
     formModal.estoque.value = produto.quantidadeEstoque;
     formModal.observacao.value = produto.observacao;
-    formModal.dataCadastro.value = produto.dataCadastro.substring(0,10);
+    formModal.dataCadastro.value = produto.dataCadastro.substring(0, 10);
 }
 
 function obterProdutos() {
 
     fetch(URL, {
         method: 'GET',
-        headers:{
+        headers: {
             'Content-Type': 'application/json',
             'Authorization': obterToken()
         }
@@ -84,11 +84,11 @@ function excluirProduto(id) {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Sim',
         cancelButtonText: 'Não',
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             excluirProdutoBackEnd(produto);
         }
-      })
+    })
 }
 
 function criarLinhaNaTabela(produto) {
@@ -178,7 +178,7 @@ function adicionarProdutoBackEnd(produto) {
                 title: 'Produto adicionado com sucesso!',
                 showConfirmButton: false,
                 timer: 2000
-              })
+            })
         })
         .catch(error => {
             console.log(error)
@@ -204,7 +204,7 @@ function atualizarProdutoBackEnd(produto) {
                 title: 'Produto editado com sucesso!',
                 showConfirmButton: false,
                 timer: 2000
-              })
+            })
         })
         .catch(error => {
             console.log(error)
@@ -228,7 +228,7 @@ function excluirProdutoBackEnd(produto) {
                 title: 'Produto excluido com sucesso!',
                 showConfirmButton: false,
                 timer: 2000
-              })
+            })
         })
         .catch(error => {
             console.log(error)
