@@ -10,6 +10,7 @@ btnEntrar.addEventListener('click', () => {
         Swal.fire({
             icon: 'error',
             text: 'O campo de e-mail e senha são obrigatórios',
+            confirmButtonColor: '#43A047'
         })
         return;
     }
@@ -31,7 +32,12 @@ function autenticar(email, senha) {
         .then(response => {
 
             if (!!response.mensagem) {
-                alert(response.mensagem);
+                Swal.fire({
+                    icon: 'error',
+                    title:'Usuário não cadastrado!',
+                    text: 'Verifique o email ou senha',
+                    confirmButtonColor: '#43A047'
+                })
                 return;
 
             } else {
@@ -43,7 +49,7 @@ function autenticar(email, senha) {
 
                 Swal.fire({
                     icon: 'success',
-                    title: 'Usuario autenticado com sucesso!',
+                    title: 'Usuário autenticado com sucesso!',
                     showConfirmButton: false,
                     timer: 2500
                 })
