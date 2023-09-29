@@ -35,7 +35,7 @@ function autenticar(email, senha) {
                 Swal.fire({
                     icon: 'error',
                     title:'Usuário não cadastrado!',
-                    text: 'Verifique o email ou senha',
+                    text: 'Verifique o email ou a senha',
                     confirmButtonColor: '#43A047'
                 })
                 return;

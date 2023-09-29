@@ -34,6 +34,7 @@ btnSalvar.addEventListener('click', () => {
         Swal.fire({
             icon: 'error',
             text: 'Nome e E-mail são obrigatórios!',
+            confirmButtonColor: '#43A047'
         })
         return;
     }
